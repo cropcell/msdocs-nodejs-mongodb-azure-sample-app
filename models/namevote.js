@@ -1,14 +1,8 @@
 const mongoose = require('mongoose');
 
 const namevoteSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    trim: true,
-  },
-  userId: {
-    type: String,
-    trim: true,
-  },
+  name: String,
+  userId: String,
   vote: Number
 });
 

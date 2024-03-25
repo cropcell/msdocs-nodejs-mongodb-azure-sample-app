@@ -1,5 +1,6 @@
 var express = require('express');
 var Task = require('../models/task');
+var NameVote = require('../models/namevote');
 
 var router = express.Router();
 
@@ -19,6 +20,29 @@ router.get('/', function(req, res, next) {
     });
 });
 
+router.post('/addNameVote', function(req, res, next) {
+  const name = "nametesT";
+
+  const userId = "123";
+  
+  var namevote = new NameVote({
+    name: name,
+    userId: userId,
+    vote: 3
+  });
+  console.log(`Adding a new nameVote ${name} - userId ${userId}`)
+
+  namevote.save()
+      .then(() => { 
+        console.log(`Added new nameVote ${name} - userId ${userId}`)        
+        res.redirect('/'); })
+      .catch((err) => {
+          console.log(err);
+          res.send('Sorry! Something went wrong.');
+      });
+});
+
+///////////////////////////////////////////////////////////////////////////
 
 router.post('/addTask', function(req, res, next) {
   const taskName = req.body.taskName;
