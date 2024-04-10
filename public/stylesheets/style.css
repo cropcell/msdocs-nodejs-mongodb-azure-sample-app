@@ -1,6 +1,8 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: black;
+  color: white;
 }
 
 a {
@@ -11,6 +13,49 @@ a {
   color: #0078D4
 }
 
-.bg-azure-light-gray {
-  background-color: #EBEBEB;
+.multiButton {
+  position: relative;
+  display: inline-block;
+  width: 5em;
+  text-align: center;
+  margin-top: 0.2em;
+  margin-bottom: 0.2em;
+  margin-left: 0.1em;
+  margin-right: 0.1em;
+}
+
+.multiButton span,
+.multiButton div {
+  position: absolute;
+}
+
+.multiButton div {
+  z-index:9999;
+  width: 100%;
+  pointer-events: none;
+  padding-top: 0.35em;
+}
+
+.multiButton .upvote{
+  right: 0m;
+  width: 50%;
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+}
+
+.multiButton .downvote{
+  left: 0em;
+  width: 50%;
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.multiButton .btn{
+  font-size: 20pt;
+  padding: 0;
+  padding-top: 0.75em;
+}
+
+.multiButton .selected{
+  background: red;
 }
