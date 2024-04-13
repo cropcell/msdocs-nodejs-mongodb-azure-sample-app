@@ -1,16 +1,12 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-color: black;
-  color: white;
+  /* background-color: black;
+  color: white; */
 }
 
-a {
-  color: #00B7FF;
-}
-
-.text-azure-blue {
-  color: #0078D4
+.container{
+  margin-top: 2em;
 }
 
 .multiButton {
@@ -22,6 +18,7 @@ a {
   margin-bottom: 0.2em;
   margin-left: 0.1em;
   margin-right: 0.1em;
+  background-color: #efefef;
 }
 
 .multiButton span,
@@ -34,6 +31,8 @@ a {
   width: 100%;
   pointer-events: none;
   padding-top: 0.35em;
+  background-color: #efefef;
+  padding-bottom: 0.2em;
 }
 
 .multiButton .upvote{
@@ -54,8 +53,47 @@ a {
   font-size: 20pt;
   padding: 0;
   padding-top: 0.75em;
+  background-color: #efefef;
+  color: #9b9b9b;
 }
 
-.multiButton .selected{
-  background: red;
+.upvote.selected{
+  background-color:#55ef93;
+  color: black;
+}
+
+.downvote.selected{
+  background-color:#FF7676;
+  color: black;
+}
+
+.p-2{
+  padding: 0 !important;
+}
+
+.header{
+  width: 100%;
+  background-color: #74B9ff;
+  position: fixed;
+  top: 0;
+  z-index: 999999;
+  padding: 0.5em;
+
+}
+
+.header-container{
+  text-align: center;
+}
+
+.header-container .config{
+  font-size: 0.9em;
+  padding: 0.4em;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+  border: #ffffff;
+  border-style: solid;
+}
+
+.header-container .btn-danger{
+  float: right;
 }

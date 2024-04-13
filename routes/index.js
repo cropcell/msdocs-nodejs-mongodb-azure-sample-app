@@ -11,16 +11,22 @@ router.get('/', function(req, res, next) {
   const userAgent = req.get('User-Agent');
   const userId = userAgent.replace(/\D+/g, '') + "@" + requestIP.getClientIp(req);
 
+  let showVoted = req.query.showVoted;
+  let hideVoted = req.query.hideVoted;
+  let sortAbc = req.query.sortAbc;
+  let sortRandom = req.query.sortRandom;
+
   NameVote.find()
   .then((nameVotes) => {      
     
-    //const currentVotes = nameVotes.filter(n => n.userId == userId);    
-    const currentVotes = nameVotes
+    const currentVotes = nameVotes.filter(n => n.userId == userId);    
+    //const currentVotes = nameVotes
+
     const allNames = AllNames;
     //console.log(currentVotes);
     var votesToRender = [];
     for(var nameText in allNames){
-      var matchedName = currentVotes.filter(n => n.name == allNames[nameText] && n.userId == userId);
+      var matchedName = currentVotes.filter(n => n.name == allNames[nameText]);
       if(matchedName.length > 0){
         //console.log("match!");
         //console.log(matchedName);
@@ -38,6 +44,41 @@ router.get('/', function(req, res, next) {
           });
       }      
     }
+
+    var filteredVotes = [];
+    console.log(req.query);
+
+    if(showVoted=="1"){
+      //do nothing, already shown
+    }
+    else if(hideVoted=="1"){
+      console.log("ASDF");
+      votesToRender = votesToRender.filter(n => n.vote == 0);
+    }
+    if(sortAbc=="1"){
+      votesToRender = votesToRender.sort(function(a, b) {
+        var textA = a.name;
+        var textB = b.name;
+        return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+      });
+    }
+    else if(sortRandom=="1"){
+      filteredVotes = votesToRender;
+      let currentIndex = filteredVotes.length;
+
+      // While there remain elements to shuffle...
+      while (currentIndex != 0) {
+    
+        // Pick a remaining element...
+        let randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+    
+        // And swap it with the current element.
+        [filteredVotes[currentIndex], filteredVotes[randomIndex]] = [
+          filteredVotes[randomIndex], filteredVotes[currentIndex]];
+      }
+    }
+
     //console.log(votesToRender);
     res.render('index', { votesToRender: votesToRender });
   })
@@ -52,7 +93,7 @@ router.post('/updateVotes', async function(req, res, next) {
   const userAgent = req.get('User-Agent');
   const userId = userAgent.replace(/\D+/g, '') + "@" + requestIP.getClientIp(req);
 
-console.log(req.body);
+  console.log(req.body.vote)
 
 var bulkWriteJson = '[';
 
@@ -60,14 +101,12 @@ for(var i in req.body._id){
   var nameVoteId = req.body._id[i];
   var nameVoteName = req.body.name[i];
   var newVote = req.body.vote[i];
-  if(newVote != 0){
     if(nameVoteId == '0'){
       bulkWriteJson += '{"insertOne":{"document":{"name": "' + nameVoteName + '", "userId": "' + userId + '", "vote": ' + newVote + ' } } },'
     }
     else{
       bulkWriteJson += '{"updateOne": {"filter": { "name": "' + nameVoteName + '", "userId": "' + userId + '" }, "update": { "$set": { "vote": ' + newVote + ' } } } },'
     }
-  }
 }
 console.log(bulkWriteJson);
 
@@ -121,79 +160,6 @@ router.post('/upvote', function(req, res, next) {
   }
 });
 
-router.post('/upvoteOld', function(req, res, next) {
-  const name = req.body._id;
-  const userId = req.body.uid;
-  
-  var namevote = new NameVote({
-    name: name,
-    userId: userId,
-    vote: 3
-  });
-  console.log(`Adding a new nameVote ${name} - userId ${userId}`)
-
-  namevote.save()
-      .then(() => { 
-        console.log(`Added new nameVote ${name} - userId ${userId}`)        
-        res.redirect('/'); })
-      .catch((err) => {
-          console.log(err);
-          res.send('Sorry! Something went wrong.');
-      });
-});
-
-///////////////////////////////////////////////////////////////////////////
-
-router.post('/addTask', function(req, res, next) {
-  const taskName = req.body.taskName;
-  const createDate = Date.now();
-  
-  var task = new Task({
-    taskName: taskName,
-    createDate: createDate
-  });
-  console.log(`Adding a new task ${taskName} - createDate ${createDate}`)
-
-  task.save()
-      .then(() => { 
-        console.log(`Added new task ${taskName} - createDate ${createDate}`)        
-        res.redirect('/'); })
-      .catch((err) => {
-          console.log(err);
-          res.send('Sorry! Something went wrong.');
-      });
-});
-
-router.post('/completeTask', function(req, res, next) {
-  console.log("I am in the PUT method")
-  const taskId = req.body._id;
-  const completedDate = Date.now();
-
-  Task.findByIdAndUpdate(taskId, { completed: true, completedDate: Date.now()})
-    .then(() => { 
-      console.log(`Completed task ${taskId}`)
-      res.redirect('/'); }  )
-    .catch((err) => {
-      console.log(err);
-      res.send('Sorry! Something went wrong.');
-    });
-});
-
-
-router.post('/deleteTask', function(req, res, next) {
-  const taskId = req.body._id;
-  const completedDate = Date.now();
-  Task.findByIdAndDelete(taskId)
-    .then(() => { 
-      console.log(`Deleted task $(taskId)`)      
-      res.redirect('/'); }  )
-    .catch((err) => {
-      console.log(err);
-      res.send('Sorry! Something went wrong.');
-    });
-});
-
 const AllNames = ['apple','banana','coconut','durian','nametesT', 'longlonglongl', 'poop', 'lol'];
-
 
 module.exports = router;
