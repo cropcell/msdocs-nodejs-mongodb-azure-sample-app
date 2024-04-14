@@ -7,7 +7,7 @@ body {
 }
 
 .containerB{
-  margin-top: -2em;
+  margin-top: -9em;
   text-align:center;
   margin-left:1em;
 }
@@ -15,9 +15,9 @@ body {
 .multiButton {
   position: relative;
   display: inline-block;
-  width: 13em;
+  width: 20em;
   text-align: center;
-  margin-top: 9em;
+  margin-top: 16em;
   margin-left: 0.4em;
   margin-right: 0.4em;
   background-color: #ffffff;
@@ -35,7 +35,7 @@ body {
   padding-top: 0.35em;
   background-color: #ffffff;
   padding-bottom: 0.2em;
-  font-size: 1.8em;
+  font-size: 2.8em;
 }
 
 .nameLabel{
@@ -69,10 +69,10 @@ body {
 }
 
 .multiButton .btn{
-  font-size: 3em;
+  font-size: 4em;
   padding: 0;
-  padding-top: 1.1em;
-  padding-bottom: 0.15em;
+  padding-top: 1.5em;
+  padding-bottom: 0.5em;
   background-color: #ffffff;
   color: #9b9b9b;
   cursor: pointer;
