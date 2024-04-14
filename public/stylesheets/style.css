@@ -1,24 +1,24 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  /* background-color: black;
-  color: white; */
+  text-align: center;
+  background-color: rgb(239,239,239);
+  /* background-color: #efefef; */
 }
 
 .container{
-  margin-top: 2em;
+  margin-top: -2em;
 }
 
 .multiButton {
   position: relative;
   display: inline-block;
-  width: 5em;
+  width: 5.7em;
   text-align: center;
-  margin-top: 0.2em;
-  margin-bottom: 0.2em;
-  margin-left: 0.1em;
-  margin-right: 0.1em;
-  background-color: #efefef;
+  margin-top: 5em;
+  margin-left: 0.4em;
+  margin-right: 0.4em;
+  background-color: #ffffff;
 }
 
 .multiButton span,
@@ -31,8 +31,16 @@ body {
   width: 100%;
   pointer-events: none;
   padding-top: 0.35em;
-  background-color: #efefef;
+  background-color: #ffffff;
   padding-bottom: 0.2em;
+}
+
+.nameLabel{
+  border-top-left-radius: 0.3em;
+  border-top-right-radius: 0.3em;
+  border-top: 1px solid #dfdfdf;
+  border-left: 1px solid #dfdfdf;
+  border-right: 1px solid #dfdfdf;
 }
 
 .multiButton .upvote{
@@ -40,6 +48,10 @@ body {
   width: 50%;
   border-bottom-left-radius: 0;
   border-top-left-radius: 0;
+  border-top-right-radius: 0.5em;
+  border-bottom-right-radius: 0.2em;
+  border-right: 1px solid #dfdfdf;
+  border-bottom: 1px solid #dfdfdf;
 }
 
 .multiButton .downvote{
@@ -47,14 +59,19 @@ body {
   width: 50%;
   border-bottom-right-radius: 0;
   border-top-right-radius: 0;
+  border-top-left-radius: 0.5em;
+  border-bottom-left-radius: 0.2em;
+  border-left: 1px solid #dfdfdf;
+  border-bottom: 1px solid #dfdfdf;
 }
 
 .multiButton .btn{
   font-size: 20pt;
   padding: 0;
   padding-top: 0.75em;
-  background-color: #efefef;
+  background-color: #ffffff;
   color: #9b9b9b;
+  cursor: pointer;
 }
 
 .upvote.selected{
@@ -82,18 +99,93 @@ body {
 }
 
 .header-container{
-  text-align: center;
+  text-align: left;
 }
 
 .header-container .config{
   font-size: 0.9em;
   padding: 0.4em;
   margin-left: 0.5em;
-  margin-right: 0.5em;
-  border: #ffffff;
-  border-style: solid;
+  margin-right: 1.5%;
+}
+
+.btn-primary{
+  background-color: #3a9cff !important;
+}
+
+.btn-primary:hover{
+  background-color: #1489ff !important;
+}
+
+.btn-danger{
+  background-color: #ff5f5f !important;
+}
+
+.btn-danger:hover{
+  background-color: #ff2121 !important;
 }
 
 .header-container .btn-danger{
   float: right;
+}
+
+.allVoteContainer{
+  text-align: left;
+  padding-top: 0.8em;
+}
+
+#popup{
+  position: fixed;
+  background-color: #badcff;
+  z-index: 99999;
+  display: block;
+  text-align: left;
+  padding: 0.7em;
+  display: none;
+  margin-left: 15%;
+  margin-right: 15%;
+  margin-top:6em;
+  border-radius: 0.5em;
+}
+
+#overlay {
+  position: fixed; /* Sit on top of the page content */
+  display: none; /* Hidden by default */
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+  z-index: 99999; /* Specify a stack order in case you're using a different order for other elements */
+  /* padding: 0.7em; */
+}
+
+#moodText {
+  margin-top: 1.0em;
+  background-color: #fff;
+  padding-top: 0.5em;
+  border-radius: 0.3em;
+}
+
+#moodText div{
+  display:inline-block;
+  padding-left: 0.8em;
+  padding-right: 0.8em;
+  padding-bottom: 0.5em;
+}
+
+#popup .headerPopup{
+  display: inline;
+  font-size: 14pt;
+}
+
+#exitMood{
+  float: right;
+  cursor: pointer;
+}
+
+#popup span{
+  padding:0.5em;
 }

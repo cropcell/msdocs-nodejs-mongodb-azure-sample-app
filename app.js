@@ -5,6 +5,7 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 const { format } = require("date-fns");
+var bodyParser = require('body-parser');
 
 // 1st party dependencies
 var configData = require("./config/connection");
@@ -24,6 +25,15 @@ async function getApp() {
   // view engine setup
   app.set("views", path.join(__dirname, "views"));
   app.set("view engine", "pug");
+
+  app.use(bodyParser.json({limit: '35mb'}));
+  app.use(
+    bodyParser.urlencoded({
+      extended: true,
+      limit: '35mb',
+      parameterLimit: 50000,
+    }),
+  );
 
   app.use(logger("dev"));
   app.use(express.json());
