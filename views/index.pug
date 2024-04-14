@@ -36,6 +36,7 @@ block content
         div(class="header-container")
           button(class='config btn btn-primary' type='button' id="showMood") mood board
           button(class='config btn btn-primary' type='button' id="showVoted") show all
+          i(class="fas fa-bell" style="font-size:24px")
           button(class='config btn btn-primary' type='button' id="hideVoted") hide voted
           button(class='config btn btn-primary' type='button' id="sortAbc") sort abc
           button(class='config btn btn-primary' type='button' id="sortRandom") sort random
@@ -49,8 +50,8 @@ block content
                     div(class="nameLabel") #{nameVote.name}
                     input(type='hidden' name='_id' value=`${nameVote._id}`)
                     input(type='hidden' name='name' value=`${nameVote.name}`)
-                    span(class='btn downvote') &#128403;
-                    span(class='btn upvote') &#128402;
+                    span(class='btn downvote') &#10004;
+                    span(class='btn upvote') ☀
                     input(type='hidden' name='vote' value=`${nameVote.vote}`)
                     input(type='hidden' name='_isDirty' value=0)
               
