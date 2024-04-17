@@ -63,6 +63,8 @@ router.get('/', function(req, res, next) {
     }
     else if(hideVoted=="1"){
       votesToRender = votesToRender.filter(n => n.vote == 0);
+      //use if a neutral vote can be counted (performed with a vote, then undoing the vote)
+      //votesToRender = votesToRender.filter(n => n._id == 0);
     }
     if(sortAbc=="1"){
       votesToRender = votesToRender.sort(function(a, b) {

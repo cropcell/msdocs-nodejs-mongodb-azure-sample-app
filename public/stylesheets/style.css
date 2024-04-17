@@ -99,7 +99,7 @@ body {
   top: 0;
   z-index: 999999;
   padding: 1em;
-
+  padding-left: 0;
 }
 
 .header-container{
@@ -197,4 +197,29 @@ body {
 
 #popup span{
   padding:0.5em;
+}
+
+#pointTotalBox{
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 0.5em;
+}
+
+#pointTotalCoin{
+  background-color: rgb(255,193,7);
+  color: white;
+  padding: 1em;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  border-radius: 4em;
+  text-align: center;
+  border: 3px rgb(179,134,2) solid;
+  border-right: 5px rgb(179,134,2) solid;
+  border-bottom: 4px rgb(179, 134, 2) solid;
+}
+
+#pointTotal{
+  text-shadow: 2px 2px 2px rgb(209 156 1);
+  font-size: 2.2em;
+  font-weight: 900;
 }
